@@ -23,13 +23,13 @@ default: &default
 
 development:
   <<: *default
-  database: current_trends_development
+  database: current_trends_api_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: current_trends
+  #username: current_trends_api
 
   # The password associated with the postgres role (username).
   #password:
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: current_trends_test
+  database: current_trends_api_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: current_trends_production
-  username: current_trends
-  password: <%= ENV['CURRENT_TRENDS_DATABASE_PASSWORD'] %>
+  database: current_trends_api_production
+  username: current_trends_api
+  password: <%= ENV['CURRENT_TRENDS_API_DATABASE_PASSWORD'] %>
