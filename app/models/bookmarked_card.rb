@@ -1,2 +1,0 @@
-class BookmarkedCard < ApplicationRecord
-end

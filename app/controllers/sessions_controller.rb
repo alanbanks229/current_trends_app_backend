@@ -2,8 +2,8 @@ class SessionsController < ApplicationController
     
     def create
         @user = User.find_by(email: session_params[:email])
-      
         if @user && @user.authenticate(session_params[:password])
+          #below we are calling helper method from application controller
           login!
           render json: {
             logged_in: true,
@@ -19,10 +19,19 @@ class SessionsController < ApplicationController
 
     def is_logged_in?
         if logged_in? && current_user
-          render json: {
-            logged_in: true,
-            user: current_user
-          }
+            if current_user.user_bookmarks
+              bookmarks = current_user.user_bookmarks.map{ |obj| obj.id }
+              render json: {
+                logged_in: true,
+                user: current_user,
+                bookmarks: bookmarks
+              }
+            else
+              render json: {
+                logged_in: true,
+                user: current_user
+              }
+            end
         else
           render json: {
             logged_in: false,
@@ -37,6 +46,19 @@ class SessionsController < ApplicationController
           status: 200,
           logged_out: true
         }
+    end
+
+    def user_bookmarks
+      user_id = params[:user_id]
+      @user = User.find_by(:id => user_id)
+      if @user.bookmarks.length >= 1
+        @bookmarks = @user.bookmarks
+        render json: @bookmarks
+      else
+        render json: {
+          message: ["You haven't bookmarked anything yet!"]
+        }
+      end
     end
 
     private

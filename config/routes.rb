@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/logged_in', to: 'sessions#is_logged_in?'
+  post '/your_bookmarks', to: 'sessions#user_bookmarks'
   
-  resources :users, only: [:create, :show, :index]
-  resources :bookmarked_cards
-
+  resources :users, only: [:create, :show, :index, :destroy]
+  resources :bookmarks, only: [:create, :show, :index, :destroy]
+  resources :user_bookmarks, only: [:create, :show, :index, :destroy]
 end

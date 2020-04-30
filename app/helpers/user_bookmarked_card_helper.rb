@@ -1,0 +1,2 @@
+module UserBookmarkedCardHelper
+end
