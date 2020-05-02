@@ -53,7 +53,14 @@ class SessionsController < ApplicationController
       @user = User.find_by(:id => user_id)
       if @user.bookmarks.length >= 1
         @bookmarks = @user.bookmarks
-        render json: @bookmarks
+        matched_books = @bookmarks.map do |bookmark|
+          currentbook = bookmark
+          match = UserBookmark.where({user: @user, bookmark: currentbook})
+          og_hash = bookmark.attributes
+          og_hash[:match_id] = match.ids
+          og_hash
+        end
+        render json: matched_books
       else
         render json: {
           message: ["You haven't bookmarked anything yet!"]
