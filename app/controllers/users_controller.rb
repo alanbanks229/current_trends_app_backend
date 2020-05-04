@@ -42,6 +42,29 @@ def show
       }
     end
   end
+
+  def update
+    @user = User.find(params[:id])
+    user_location = {
+      county: params[:localityInfo]["administrative"][2][:name],
+      city: params[:locality],
+      state: params[:principalSubdivision],
+      zip: params[:postcode]
+    }
+    if @user
+      @user.update(location: user_location)
+      render json:{
+        location_data: @user.location
+      }
+    else 
+      render json: {
+        status: 500,
+        error: ["Could not update user location, error"]
+      }
+    end
+  end
+
+
 private
   
   def user_params

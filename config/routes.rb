@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/logged_in', to: 'sessions#is_logged_in?'
   post '/your_bookmarks', to: 'sessions#user_bookmarks'
   
-  resources :users, only: [:create, :show, :index, :destroy]
+  resources :users, only: [:create, :show, :index, :destroy, :update]
   resources :bookmarks, only: [:create, :show, :index, :destroy]
   resources :user_bookmarks, only: [:create, :show, :index, :destroy]
 end
