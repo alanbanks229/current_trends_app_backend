@@ -6,11 +6,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-config.action_dispatch.default_headers = {
-  'Access-Control-Allow-Origin' => 'https://current-trends-app.herokuapp.com/',
-  'Access-Control-Request-Method' => %w{GET POST DELETE}.join(",")
-}
-
 module CurrentTrendsApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
