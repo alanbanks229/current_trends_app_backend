@@ -10,7 +10,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     # end
 
     allow do
-      origins 'https://current-trends-app.herokuapp.com'
+      origins 'http://localhost:3000'
   
       resource '*',
         headers: :any,
