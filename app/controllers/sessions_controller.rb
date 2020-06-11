@@ -5,10 +5,19 @@ class SessionsController < ApplicationController
         if @user && @user.authenticate(session_params[:password])
           #below we are calling helper method from application controller
           login!
-          render json: {
-            logged_in: true,
-            user: @user
-          }
+          if @user.user_bookmarks
+            bookmark_ids = @user.user_bookmarks.map{ |obj| obj.id }
+            render json: {
+              logged_in: true,
+              user: @user,
+              bookmarks: bookmark_ids
+            }
+          else
+            render json: {
+              logged_in: true,
+              user: @user
+            }
+          end
         else
           render json: { 
             status: 401,
