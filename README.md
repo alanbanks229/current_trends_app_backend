@@ -1,24 +1,5 @@
-# README
+# Current Trends (Backend) - ARCHIVED
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+---
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**This project is an archived Capstone project for the FlatIron School (May 2020). It is no longer actively maintained or updated.**
